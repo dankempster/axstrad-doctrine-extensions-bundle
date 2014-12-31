@@ -64,7 +64,7 @@ class AxstradDoctrineExtensionsExtension extends Extension
     public function configValidate(ContainerBuilder $container)
     {
         foreach (array_keys($this->entityManagers) as $name) {
-            if (!$container->hasDefinition(sprintf('doctrine.dbal.%s_connection', $name))) {
+            if ( ! $container->hasDefinition(sprintf('doctrine.dbal.%s_connection', $name))) {
                 throw new \InvalidArgumentException(sprintf('Invalid %s config: DBAL connection "%s" not found', $this->getAlias(), $name));
             }
         }
