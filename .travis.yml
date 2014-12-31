@@ -1,14 +1,9 @@
 language: php
 php:
   - 5.4
-  - 5.5
-  - 5.6
 env:
   - SYMFONY_VERSION="2.3.*"
-  - SYMFONY_VERSION="2.4.*"
-  - SYMFONY_VERSION="2.5.*"
   - SYMFONY_VERSION="2.6.*"
-  - SYMFONY_VERSION="2.7.*@dev"
   # - SYMFONY_VERSION="3.0.*@dev"
 before_script:
   # - export COMPOSER_PATH=$(which composer)
@@ -22,29 +17,17 @@ after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --access-token="80b65a15a783f3ca91af2635f701052e94179ebf84aad0a031dcc90dddd30394" --format=php-clover coverage.clover
 matrix:
+  # Build with PHP 5.5 and Symfony LTS
+  include:
+    - php: 5.5
+      env: SYMFONY_VERSION="2.3.*"
+    - php: 5.6
+      env: SYMFONY_VERSION="2.7.*@dev"
+
+  # Test the latest PHP and Symfony Next
   allow_failures:
     - env: SYMFONY_VERSION="2.7.*@dev"
-    # - env: SYMFONY_VERSION="3.0.*@dev"
-  exclude:
-    - php: 5.5
-      env: SYMFONY_VERSION="2.4.*""
-    - php: 5.6
-      env: SYMFONY_VERSION="2.4.*""
 
-    - php: 5.5
-      env: SYMFONY_VERSION="2.5.*""
-    - php: 5.6
-      env: SYMFONY_VERSION="2.5.*""
-
-    - php: 5.5
-      env: SYMFONY_VERSION="2.6.*""
-    - php: 5.6
-      env: SYMFONY_VERSION="2.6.*""
-
-    - php: 5.5
-      env: SYMFONY_VERSION="2.7.*@dev"
-    - php: 5.6
-      env: SYMFONY_VERSION="2.7.*@dev"
 
   fast_finish: true
 
