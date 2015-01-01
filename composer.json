@@ -26,6 +26,7 @@
         "axstrad/test-bundle": "0.1.*",
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
         "phpunit/phpunit": "~4.1",
+        "satooshi/php-coveralls": "dev-master",
         "sensio/framework-extra-bundle": "~2.3 | ~3"
     },
 
